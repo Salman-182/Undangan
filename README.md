@@ -1,6 +1,6 @@
 # 📦 Undangan Pernikahan Digital - Dokumentasi Aplikasi
 
-## 1. ✅ Cara Instalasi Aplikasi
+## 1.  Cara Instalasi Aplikasi
 
 ### 1.1 Persyaratan Sistem
 
@@ -32,7 +32,7 @@
 #### d. Import Struktur Database
 
 * Buka phpMyAdmin
-* Pilih database yang kamu buat
+* Pilih database yang dibuat
 * Import semua file SQL berikut secara berurutan:
 
   1. `admin.sql`
@@ -62,7 +62,7 @@ $db   = 'DB_NAME';
 Akses web undangan kamu via browser:
 
 ```
-https://domainkamu.com/undangan/
+https://undanganpernikahan.ct.ws
 ```
 
 ---
