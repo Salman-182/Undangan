@@ -118,7 +118,7 @@ https://undanganpernikahan.ct.ws
 * Gambar ditampilkan dari folder `uploads/`
 * Admin bisa upload manual via FTP atau buat panel admin
 
-#### ⚙️ Admin Panel (jika tersedia)
+#### ⚙️ Pengaturan Web
 
 * Melihat daftar tamu, ucapan, gift masuk
 * Edit pengaturan nama mempelai, lokasi, jadwal
@@ -137,14 +137,3 @@ https://undanganpernikahan.ct.ws
 /ucapan.php
 /admin/
   login.php, dashboard.php
-```
-
----
-
-## 📞 Kontak
-
-Jika butuh bantuan instalasi: \[nama kamu/penyedia]
-
----
-
-> Dokumentasi ini bisa dipisah ke `README.md`, `docs/INSTALLATION.md`, dan `docs/USAGE.md` jika proyek dipublikasi di GitHub.
