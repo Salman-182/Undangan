@@ -1,0 +1,12 @@
+| Tabel            | Fungsi                                                                    |
+| ---------------- | ------------------------------------------------------------------------- |
+| `tamu`           | Menyimpan data tamu undangan (nama, alamat, no. WA, dll).                 |
+| `ucapan`         | Menyimpan pesan ucapan dari tamu. Relasi ke `tamu`.                       |
+| `kehadiran`      | Menyimpan konfirmasi kehadiran tamu. Relasi ke `tamu`.                    |
+| `transaksi_gift` | Menyimpan informasi transfer hadiah dari tamu. Relasi ke `tamu` & `bank`. |
+| `bank`           | Data rekening penerima hadiah. Relasi ke `transaksi_gift`.                |
+| `acara`          | Menyimpan info acara (akad, resepsi, dll.). Relasi ke `lokasi`.           |
+| `lokasi`         | Data tempat berlangsungnya acara.                                         |
+| `galeri`         | Menyimpan gambar-gambar galeri pernikahan. Tidak memiliki relasi.         |
+| `admin`          | Akun login admin untuk mengelola aplikasi. Tidak memiliki relasi.         |
+| `pengaturan_web` | Pengaturan global web (tema warna, nama mempelai, musik). Tidak relasi.   |
