@@ -50,11 +50,11 @@
 
 Edit file `config/database.php` sesuai kredensial database kamu:
 
-```php
-$host = 'localhost';
-$user = 'DB_USER';
-$pass = 'DB_PASS';
-$db   = 'DB_NAME';
+```<?php
+$host = "sql309.infinityfree.com";
+$user = "if0_39465072";
+$pass = "Aku31573";
+$dbname = "if0_39465072_UndanganSalman";
 ```
 
 #### f. Selesai
@@ -62,7 +62,7 @@ $db   = 'DB_NAME';
 Akses web undangan kamu via browser:
 
 ```
-https://undanganpernikahan.ct.ws
+UndanganSalman.ct.ws
 ```
 
 ---
