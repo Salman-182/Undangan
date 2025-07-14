@@ -2,26 +2,36 @@
 session_start();
 include '../config/database.php';
 
-$error = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = md5($_POST['password']); // Untuk demo; gunakan password_hash di produksi
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    $result = $conn->query("SELECT * FROM admin WHERE username='$username' AND password='$password'");
-    
-    if ($result->num_rows == 1) {
+$error = '';
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    $stmt = $conn->prepare("SELECT * FROM admin WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows === 1) {
         $admin = $result->fetch_assoc();
-        $_SESSION['admin_logged_in'] = true;
-        $_SESSION['admin_name'] = $admin['nama_lengkap'];
-        header("Location: dashboard.php");
-        exit;
+
+        if (password_verify($password, $admin['password'])) {
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_name'] = $admin['nama_lengkap'];
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            $error = "Password salah!";
+        }
     } else {
-        $error = "Username atau password salah!";
+        $error = "Username tidak ditemukan!";
     }
 }
 ?>
-
-<!-- Tampilan HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -30,21 +40,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container mt-5">
-    <h3>Login Admin</h3>
+<div class="container mt-5" style="max-width: 400px;">
+    <h3 class="mb-4 text-center">🔐 Login Admin</h3>
+
     <?php if ($error): ?>
-        <div class="alert alert-danger"><?= $error ?></div>
+        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-    <form method="post">
+
+    <form method="POST">
         <div class="mb-3">
-            <label>Username:</label>
+            <label>Username</label>
             <input type="text" name="username" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Password:</label>
+            <label>Password</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary w-100" type="submit">Login</button>
     </form>
 </div>
 </body>

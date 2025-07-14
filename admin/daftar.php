@@ -1,7 +1,29 @@
 <?php
 include '../config/database.php';
-?>
 
+if (isset($_POST['submit'])) {
+    $nama      = $_POST['nama'];
+    $alamat    = $_POST['alamat'];
+    $email     = $_POST['email'];
+    $no_wa     = $_POST['no_wa'];
+    $kehadiran = $_POST['kehadiran'];
+
+    $stmt = $conn->prepare("INSERT INTO tamu (nama, alamat, email, no_wa, kehadiran, waktu_daftar) VALUES (?, ?, ?, ?, ?, NOW())");
+
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("sssss", $nama, $alamat, $email, $no_wa, $kehadiran); // HANYA 5 parameter
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Terima kasih atas konfirmasi Anda!'); window.location='index.php';</script>";
+        exit;
+    } else {
+        echo "<div class='alert alert-danger text-center'>Gagal menyimpan data tamu: " . $stmt->error . "</div>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -60,4 +82,3 @@ include '../config/database.php';
 </div>
 </body>
 </html>
-
